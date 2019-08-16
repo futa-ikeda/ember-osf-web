@@ -7,6 +7,7 @@ env:
   global:
     - SUPPRESS_NO_CONFIG_WARNING=true
     - GK_LOCK_YARN_OPTS='--ignore-engines'
+    - secure: "JjOUUDTlQ+E17mLZ35qXhwrYGQHWp2BMZi+xzHMjvlu5niwCo9bfBzk9AQiheyNCL1aBUhbH/DGIXJqYp1QBgEhkdlV97RsKsXus0bsmEaDcuuzSZRy21Z6CLsbSBrlDHNp+DS0raZBlU8MP3omPxHrzaFRbslBoYtrpVQqWWmnxwEjgIhTvmjbVP2wEE/F2IAFAqSu72mF2q4fqTrqKSmbe7k08M6j6rh/v86ocqbvPZsYpkrX5tOaOf6YmtUSCR1yMcGwQHGwh4UrA5W9+1xcO7ZISuAqUgI4sWwmsKjBjfud/BAH32KURSsC/btNoedR4nKmDo8ltBy06D/NziX8gsHjKHrU1+wqGL+xAmGKpuVOr4biRMZA84+BCCVkVwl0cGzjv7Zs5IkfRP2qCf1lk04VXHAwMJGwd/qpCDImHNVMkPn6x62xI9tuoZlt2XQ/UYMzXnEOk8li5xqv1ZTuP2/HrgdLqYFOFAuUFM8i2azcQ2dMwXTTH8ucFHL45fRyeJP1nHxGIy4nzjaQVbWWVlN+wFvR3Mz8AywCLDNjUZFUGENOvbE96347i4Il4WBZx8zZ7WEfpfx7AWqPHuvIj45UWrVeMnlSowQx1bxC+lIPczao3xW2j7gH0OgxCQFA00QmEwAkJhfrJVZMzXXg9d78W5q6kVigbcczOM8E="
 
 cache:
   yarn: true
@@ -22,6 +23,12 @@ jobs:
         env(RESTRICT_PUSH_BUILDS) != true
       addons:
         chrome: stable
+        coverity_scan:
+          project:
+            name: "futa-ikeda/ember-osf-web"
+            description: "<Your project description here>"
+            notification_email: futa.ikeda@gmail.com
+            branch_pattern: coverity_scan
       before_install:
         - curl -o- -L https://yarnpkg.com/install.sh | bash
         - export PATH=$HOME/.yarn/bin:$PATH
