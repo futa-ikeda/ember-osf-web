@@ -1,5 +1,6 @@
 documentType:
     default:
+        test: test
         plural: documents
         pluralCapitalized: Documents
         singular: document
