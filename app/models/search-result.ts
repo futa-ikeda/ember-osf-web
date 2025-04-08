@@ -7,8 +7,6 @@ import { languageFromLanguageCode } from 'osf-components/components/file-metadat
 
 import IndexCardModel from './index-card';
 
-const textMatchEvidenceType = 'https://share.osf.io/vocab/2023/trove/TextMatchEvidence';
-
 export interface IriMatchEvidence {
     '@type': [string];
     matchingIri: string;
@@ -45,14 +43,12 @@ export default class SearchResultModel extends Model {
         return this.indexCard.get('resourceMetadata');
     }
 
-    // TODO: double check how matchEvidence works
     get context() {
         if (this.matchEvidence) {
             const matchEvidenceString = this.matchEvidence.reduce(
                 (acc, current) => acc.concat(
-                    `${current.osfmapPropertyPath[0]}: ${current['@type'][0] === textMatchEvidenceType
-                        ? (current as TextMatchEvidence).matchingHighlight
-                        : (current as IriMatchEvidence).matchingIri}; `,
+                    `${current.osfmapPropertyPath[0]}:
+                    ${(current as TextMatchEvidence).matchingHighlight || (current as IriMatchEvidence).matchingIri}; `,
                 ),
                 '',
             );
